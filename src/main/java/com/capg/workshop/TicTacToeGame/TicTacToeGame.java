@@ -51,7 +51,6 @@ public class TicTacToeGame {
 			while (!(index > 0 && index < 10)) {
 				System.out.println("Enter proper index value between 1 to 9");
 				index = sc.nextInt();
-				System.out.println("select" + index);
 			}
 
 			return index;
