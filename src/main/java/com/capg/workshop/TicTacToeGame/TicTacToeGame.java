@@ -14,6 +14,8 @@ public class TicTacToeGame {
 		createBoard();
 		char playerChoice = sc.next().charAt(0);
 		computerChoice(playerChoice);
+		int index = sc.nextInt();
+		playerMove(index, playerChoice);
 		printBoard();
 	}
 
@@ -44,4 +46,30 @@ public class TicTacToeGame {
 		System.out.println("-----------");
 		System.out.println(" " + ticTacBoard[7] + " | " + ticTacBoard[8] + " | " + ticTacBoard[9]);
 	}
-}
+	// UC4
+		public static int selectIndex(int index) {
+			while (!(index > 0 && index < 10)) {
+				System.out.println("Enter proper index value between 1 to 9");
+				index = sc.nextInt();
+				System.out.println("select" + index);
+			}
+
+			return index;
+		}
+
+		public static int checkForFreeSpace(int index) {
+			index = selectIndex(index);
+			while (ticTacBoard[index] != ' ') {
+				System.out.println("Sorry,Position is already filled,Enter new position.");
+				index = sc.nextInt();
+			}
+			return index;
+		}
+
+		// UC5
+		public static void playerMove(int index, char choice) {
+			index = checkForFreeSpace(index);
+			ticTacBoard[index] = choice;
+		}
+	}
+
