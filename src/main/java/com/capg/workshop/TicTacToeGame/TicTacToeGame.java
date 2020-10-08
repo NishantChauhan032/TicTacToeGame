@@ -13,6 +13,6 @@ public class TicTacToeGame {
 			ticTacToeBoard[i] = ' ';
 		}
 		return ticTacToeBoard;
-	}
+	} 
 }
 
