@@ -2,20 +2,30 @@ package com.capg.workshop.TicTacToeGame;
 
 import java.util.Scanner;
 
+enum FirstPlay{
+	PLAYER, COMPUTER;
+}
+
 public class TicTacToeGame {
 
 	static Scanner sc = new Scanner(System.in);
 
 	private static final char CHAR_X = 'X';
 	private static final char CHAR_O = 'O';
+	private static final int TAILS = 0;
+	
 
 	public static void main(String[] args) {
 
 		createBoard();
+		System.out.println("Please select your choice(X/O):");
 		char playerChoice = sc.next().charAt(0);
 		computerChoice(playerChoice);
+		System.out.println("Please select a position(1-9): ");
 		int index = sc.nextInt();
 		playerMove(index, playerChoice);
+		String firstPlay = getWhoPlaysFirst();
+		System.out.println("First Chance given to: "+ firstPlay);
 		printBoard();
 	}
 
@@ -69,6 +79,14 @@ public class TicTacToeGame {
 		public static void playerMove(int index, char choice) {
 			index = checkForFreeSpace(index);
 			ticTacBoard[index] = choice;
+		}
+		private static String getWhoPlaysFirst() {
+			int toss =(int)Math.floor((Math.random()*10)% 2);
+			if(toss==TAILS) {
+				return FirstPlay.COMPUTER.toString();
+			}else {
+				return FirstPlay.PLAYER.toString();
+			}
 		}
 	}
 
