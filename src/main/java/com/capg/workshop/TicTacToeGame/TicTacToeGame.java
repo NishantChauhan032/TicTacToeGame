@@ -195,7 +195,7 @@ public class TicTacToeGame {
 				if (checkStatus.contains("WIN")) {
 					checkIndex = i;
 					break;
-				}else  {
+				}else {
 					ticTacToeBoardCopy[i] = choiceOfPlayer;
 					checkStatus = checkGameStatus(ticTacToeBoardCopy,choiceOfPlayer);
 					if (checkStatus.contains("WIN")) {
@@ -206,15 +206,25 @@ public class TicTacToeGame {
 			}
 		}
 		if (checkIndex == 0) {
-			for (int j = 1; j < 10; j++) {
-				if (ticTacToeBoardCopy[j] == ' ') {
-					checkIndex = j;
-					break;
-				}
-			}
-		}
-		return checkIndex;
-	}
+            if (ticTacToeBoardCopy[1] == ' ') {
+                checkIndex = 1;
+            } else if (ticTacToeBoardCopy[3] == ' ') {
+                checkIndex = 3;
+            } else if (ticTacToeBoardCopy[7] == ' ') {
+                checkIndex = 7;
+            } else if (ticTacToeBoardCopy[9] == ' ') {
+                checkIndex = 9;
+            } else {
+                for (int j = 1; j < 10; j++) { 
+                    if (ticTacToeBoardCopy[j] == ' ') {
+                        checkIndex = j;
+                        break;
+                    }
+                }
+            }
+        }
+        return checkIndex;
+    }
 }
 
 
