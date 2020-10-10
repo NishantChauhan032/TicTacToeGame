@@ -177,7 +177,7 @@ public class TicTacToeGame {
 		}
 		return gameStatus;
 	}
-	/**UC8 && UC9 && UC10 && UC11
+	/**UC8 && UC9 && UC10 && UC11 && UC12
 	 * @param choiceOfComputer
 	 * @param choiceOfPlayer
 	 * @return
