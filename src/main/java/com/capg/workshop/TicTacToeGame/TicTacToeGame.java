@@ -177,7 +177,7 @@ public class TicTacToeGame {
 		}
 		return gameStatus;
 	}
-	/**UC8 && UC9 && UC10
+	/**UC8 && UC9 && UC10 && UC11
 	 * @param choiceOfComputer
 	 * @param choiceOfPlayer
 	 * @return
@@ -214,7 +214,9 @@ public class TicTacToeGame {
                 checkIndex = 7;
             } else if (ticTacToeBoardCopy[9] == ' ') {
                 checkIndex = 9;
-            } else {
+            } else if (ticTacToeBoard[5] == ' '){
+            	checkIndex = 5;
+            }else {
                 for (int j = 1; j < 10; j++) { 
                     if (ticTacToeBoardCopy[j] == ' ') {
                         checkIndex = j;
