@@ -15,7 +15,8 @@ public class TicTacToeGame {
 	private static final int TAILS = 0;
 
 	public static void main(String[] args) {
-
+        int askForNextGame =1 ;
+        while(askForNextGame==1) {
 		createBoard();
 		System.out.println("Please select your choice(X/O):");
 		char playerChoice = sc.next().charAt(0);
@@ -54,6 +55,9 @@ public class TicTacToeGame {
 			}
 		}
 		System.out.println("MATCH RESULT : " + showFinalResult);
+		System.out.println("Want to Play Another Game? 1.Yes 2.NO");
+		askForNextGame = sc.nextInt();
+        }
 	}
 
 	static char[] ticTacToeBoard;
