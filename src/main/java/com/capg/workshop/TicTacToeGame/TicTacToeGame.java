@@ -177,7 +177,7 @@ public class TicTacToeGame {
 		}
 		return gameStatus;
 	}
-	/**UC8 && UC9
+	/**UC8 && UC9 && UC104
 	 * @param choiceOfComputer
 	 * @param choiceOfPlayer
 	 * @return
@@ -195,12 +195,11 @@ public class TicTacToeGame {
 				if (checkStatus.contains("WIN")) {
 					checkIndex = i;
 					break;
-				}else {
+				}else  {
 					ticTacToeBoardCopy[i] = choiceOfPlayer;
 					checkStatus = checkGameStatus(ticTacToeBoardCopy,choiceOfPlayer);
 					if (checkStatus.contains("WIN")) {
 						checkIndex = i;
-						break;
 					}
 				}
 				ticTacToeBoardCopy[i] = ' ';
