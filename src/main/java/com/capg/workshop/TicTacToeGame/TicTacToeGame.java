@@ -22,14 +22,14 @@ public class TicTacToeGame {
 		char computerChoice = computerChoice(playerChoice);
 		String player = getWhoPlaysFirst();
 		System.out.println("First Chance given to: " + player);
-		String gameStatus = checkGameStatus(playerChoice);
+		String gameStatus = checkGameStatus(ticTacToeBoard,playerChoice);
 		String showFinalResult = "Lets Play The Game!";
 		while (gameStatus.equals("CHANGE")) {
 			if (player.equals("PLAYER")) {
 				System.out.println("Please select a position(1-9): ");
 				int index = sc.nextInt();
 				playerMove(index, playerChoice);
-				gameStatus = checkGameStatus(playerChoice);
+				gameStatus = checkGameStatus(ticTacToeBoard,playerChoice);
 				if (gameStatus.equals("WIN")) {
 					showFinalResult = "Player Won the match!";
 				} else if (gameStatus.equals("TIE")) {
@@ -39,10 +39,10 @@ public class TicTacToeGame {
 				}
 				showBoard();
 			} else {
-				System.out.println("Please select a position b/w 1-9 for Computer: ");
-				int index = sc.nextInt();
+				System.out.println("Computer played. Look for your next move! ");
+				int index = checkComputerChance(computerChoice);
 				playerMove(index, computerChoice);
-				gameStatus = checkGameStatus(computerChoice);
+				gameStatus = checkGameStatus(ticTacToeBoard,computerChoice);
 				if (gameStatus.equals("WIN")) {
 					showFinalResult = "Computer Won The Match!";
 				} else if (gameStatus.equals("TIE")) {
@@ -159,7 +159,7 @@ public class TicTacToeGame {
 		return isTie;
 	}
 
-	public static String checkGameStatus(char choice) {
+	public static String checkGameStatus(char[] ticTacToeBoard,char choice) {
 		String gameStatus;
 		if ((ticTacToeBoard[1] == choice && ticTacToeBoard[2] == choice && ticTacToeBoard[3] == choice)
 				|| (ticTacToeBoard[4] == choice && ticTacToeBoard[5] == choice && ticTacToeBoard[6] == choice)
@@ -176,6 +176,34 @@ public class TicTacToeGame {
 			gameStatus = "CHANGE";
 		}
 		return gameStatus;
-
+	}
+	public static int checkComputerChance(char choice) {
+		char[] ticTacToeBoardCopy = new char[10];
+		for (int i = 0; i < 10; i++) {
+			ticTacToeBoardCopy[i] = ticTacToeBoard[i];
+		}
+		int checkIndex = 0;
+		for (int i = 0; i < 10; i++) {
+			if (ticTacToeBoardCopy[i] == ' ') {
+				ticTacToeBoardCopy[i] = choice;
+				String checkStatus = checkGameStatus(ticTacToeBoardCopy,choice);
+				if (checkStatus.contains("WIN")) {
+					checkIndex = i;
+					break;
+				}
+				ticTacToeBoardCopy[i] = ' ';
+			}
+		}
+		if (checkIndex == 0) {
+			for (int j = 1; j < 10; j++) {
+				if (ticTacToeBoardCopy[j] == ' ') {
+					checkIndex = j;
+					break;
+				}
+			}
+		}
+		return checkIndex;
 	}
 }
+
+
