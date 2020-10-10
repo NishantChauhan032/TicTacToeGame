@@ -40,7 +40,7 @@ public class TicTacToeGame {
 				showBoard();
 			} else {
 				System.out.println("Computer played. Look for your next move! ");
-				int index = checkComputerChance(computerChoice);
+				int index = checkComputerChance(computerChoice,playerChoice);
 				playerMove(index, computerChoice);
 				gameStatus = checkGameStatus(ticTacToeBoard,computerChoice);
 				if (gameStatus.equals("WIN")) {
@@ -177,7 +177,12 @@ public class TicTacToeGame {
 		}
 		return gameStatus;
 	}
-	public static int checkComputerChance(char choice) {
+	/**UC8 && UC9
+	 * @param choiceOfComputer
+	 * @param choiceOfPlayer
+	 * @return
+	 */
+	public static int checkComputerChance(char choiceOfComputer, char choiceOfPlayer) {
 		char[] ticTacToeBoardCopy = new char[10];
 		for (int i = 0; i < 10; i++) {
 			ticTacToeBoardCopy[i] = ticTacToeBoard[i];
@@ -185,11 +190,18 @@ public class TicTacToeGame {
 		int checkIndex = 0;
 		for (int i = 0; i < 10; i++) {
 			if (ticTacToeBoardCopy[i] == ' ') {
-				ticTacToeBoardCopy[i] = choice;
-				String checkStatus = checkGameStatus(ticTacToeBoardCopy,choice);
+				ticTacToeBoardCopy[i] = choiceOfComputer;
+				String checkStatus = checkGameStatus(ticTacToeBoardCopy,choiceOfComputer);
 				if (checkStatus.contains("WIN")) {
 					checkIndex = i;
 					break;
+				}else {
+					ticTacToeBoardCopy[i] = choiceOfPlayer;
+					checkStatus = checkGameStatus(ticTacToeBoardCopy,choiceOfPlayer);
+					if (checkStatus.contains("WIN")) {
+						checkIndex = i;
+						break;
+					}
 				}
 				ticTacToeBoardCopy[i] = ' ';
 			}
